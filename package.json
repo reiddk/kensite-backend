@@ -1,0 +1,12 @@
+{
+  "name": "kensite-backend",
+  "version": "1.0.0",
+  "description": "The backend script for building the kenneth site",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.6.1",
+    "dotenv": "^6.0.0",
+    "pdftohtmljs": "^0.5.2",
+    "request": "^2.87.0"
+  }
+}
