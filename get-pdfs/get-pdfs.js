@@ -2,8 +2,8 @@ require('dotenv').config();
 var request = require('request');
 var parseOut = require('../services/parse-files');
 var async = require('async');
-var rimraf = require('rimraf');
 var fs = require('fs');
+var utilities = require('../services/utility');
 
 
 var getPDFS = {
@@ -32,36 +32,22 @@ var getPDFS = {
       }
     }
   },
-  emptyDirectory: function (directory, callback) {
-    rimraf(directory, function () { 
-      callback();
-    });
-  },
   downloadAllPdfs: function (pdfObj, directory, callback) {
-    async.forEachOf(pdfObj, (value, key, innerCallback) => {
-
-    var r = request(value.pdf_link);
-    r.on('response',  function (res) {
-      res.pipe(fs.createWriteStream('./get-pdfs/pdfs/' + directory + '/' + value.name + '.' + res.headers['content-type'].split('/')[1]));
-      innerCallback();
+    utilities.resetPdfDirectory('./get-pdfs/pdfs/', function () {
+      console.log('asdf');
+      async.forEachOf(pdfObj, (value, key, innerCallback) => {
+        var r = request(value.pdf_link);
+        r.on('response',  function (res) {
+          res.pipe(fs.createWriteStream('./get-pdfs/pdfs/' + directory + '/' + value.name + '.' + res.headers['content-type'].split('/')[1]));
+          innerCallback();
+        });
+      }, err => {
+          if (err) console.error(err.message);
+          callback();
+      });
     });
-    }, err => {
-        if (err) console.error(err.message);
-        callback();
-    });
-
   }
-
 };
-
 
 module.exports = getPDFS;
 
-/*
-var r = request(url2);
-
-r.on('response',  function (res) {
-  res.pipe(fs.createWriteStream('./' + res.headers.date + '.' + res.headers['content-type'].split('/')[1]));
-
-});
-*/
