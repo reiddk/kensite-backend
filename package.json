@@ -6,7 +6,9 @@
   "dependencies": {
     "async": "^2.6.1",
     "dotenv": "^6.0.0",
+    "fs": "0.0.1-security",
     "pdftohtmljs": "^0.5.2",
-    "request": "^2.87.0"
+    "request": "^2.87.0",
+    "rimraf": "^2.6.2"
   }
 }
