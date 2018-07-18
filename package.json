@@ -5,10 +5,12 @@
   "license": "MIT",
   "dependencies": {
     "async": "^2.6.1",
+    "child_process": "^1.0.2",
     "dotenv": "^6.0.0",
     "fs": "0.0.1-security",
     "pdftohtmljs": "^0.5.2",
     "request": "^2.87.0",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "util": "^0.11.0"
   }
 }

@@ -33,8 +33,7 @@ var getPDFS = {
     }
   },
   downloadAllPdfs: function (pdfObj, directory, callback) {
-    utilities.resetPdfDirectory('./get-pdfs/pdfs/', function () {
-      console.log('asdf');
+    utilities.resetDirectory('./get-pdfs/pdfs/' + directory, function () {
       async.forEachOf(pdfObj, (value, key, innerCallback) => {
         var r = request(value.pdf_link);
         r.on('response',  function (res) {
